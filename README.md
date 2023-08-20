@@ -15,5 +15,5 @@ npm node -v
 ```
 Look at my app and give your opinion, thank you 😊. If you have any questions or see any errors, do not hesitate to send me an issue 👍
 ```bash
-node app.js
+npm start
 ```

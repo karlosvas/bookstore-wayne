@@ -2,7 +2,6 @@ const fotos = document.querySelector('.div-fotos');
 const btn = document.getElementById('btn-search');
 const input = document.getElementById('input')
 
-
 let res = ""
 
 btn.addEventListener("click", () => {
