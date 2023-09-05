@@ -145,3 +145,14 @@ input{
     height: 20px;
     width: 20px;
 }
+
+#home{
+    margin-left: 50px;
+    height: 80px;
+    width: 100px;
+}
+#home > img{
+    margin: 10px 10px;
+    height: 60px;
+    width: 60px;
+}

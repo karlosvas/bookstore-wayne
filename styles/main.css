@@ -10,8 +10,8 @@ body {
 
 .div-main{
     position: relative;
-    max-width: 70%;
-    max-height: 100vw;
+    max-width: 100%;
+    height: 100vw;
 }
 
 .div-header{
@@ -21,9 +21,11 @@ body {
 }
 
 .div-footer{
+    margin-top: 50px;
     position: relative;
     height: 7vw;
     background: rgb(19, 19, 19);
+    bottom: 0;
 }
 
 .div-search {
@@ -36,22 +38,24 @@ body {
 }
 
 .div-fotos {
-    width: 100%;
-    height: 70%;
-    padding-left: 200px;
+    height: 100%;
+    padding-top: 50px;
+    padding-left: 130px;
+    padding-right: 100px;
 }
 
 a > img{
     margin: 40px;
     max-width: 250px;
-    max-height: 400px;
+    max-height: 380px;
     border-radius: 3px;
+    object-fit: cover;
 }
 
 .register a > img{
     max-width: 40px;
     max-height: 40px;
-    border-radius: 15px;
+    border-radius: 20px;
 }
 
 .register{
