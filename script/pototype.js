@@ -1,17 +1,25 @@
 "use strict";
 
 import { readJSON } from "./search.js";
+import { data } from "./search.js";
 
-const addJSON = (book) =>
+const addJSON = (book) => {
   readJSON(book)
-    .then((bookData) => {
-      document.getElementById("title").textContent = bookData.title;
-      document.getElementById("content").textContent = bookData.content;
-      document.getElementById("imgPath").src = bookData.imagePath;
+    .then(() => {
+      const bookData = data.book;
+
+      if (bookData) {
+        document.getElementById("title").textContent = bookData.title;
+        document.getElementById("content").textContent = bookData.content;
+        document.getElementById("imgPath").src = bookData.imagePath;
+      } else {
+        console.error("No se encontró el libro solicitado.");
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
     });
+};
 
 const obtenerCookie = (cookieName) => {
   let cookies = document.cookie;
