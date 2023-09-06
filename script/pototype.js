@@ -12,6 +12,7 @@ const addJSON = (book) => {
         document.getElementById("title").textContent = bookData.title;
         document.getElementById("content").textContent = bookData.content;
         document.getElementById("imgPath").src = bookData.imagePath;
+        document.getElementById("price").textContent = bookData.price;
       } else {
         console.error("No se encontró el libro solicitado.");
       }

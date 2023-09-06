@@ -66,7 +66,7 @@ const createBook = (titulo) => {
   const img = document.createElement("img");
   img.src = `/img/${titulo}.png`;
   img.addEventListener("click", () => {
-    document.cookie = `id=${titulo}`;
+    document.cookie = `id=${titulo}; path=/;`;
   });
   anchor.appendChild(img);
   divFotos.appendChild(anchor);

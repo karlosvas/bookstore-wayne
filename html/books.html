@@ -2,15 +2,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proto</title>
+    <title>book</title>
+    <link rel="icon" href="/img/oro.png">
     <link rel="stylesheet" href="/styles/preview.css">
+    <script defer type="module" src="/script/pototype.js"></script>
+    <script defer type="module" src="/script/carry.js"></script>
+    <script defer type="module" src="/script/server.js"></script>
 </head>
 <body>
     <div class="div-header">
-        <a id="home" href="/index.html"><img src="/img/oro.png"></a>
+        <img id="home" src="/img/oro.png">
         <div class="div-search">
             <input id="input" type="text">
-            <button id='btn-search'><img src="/img/lupa.png" id="lupa"></button>
         </div>
         <img src="/img/carry.png" id="carry">
     </div>
@@ -18,8 +21,8 @@
     <div class="div-main">
         <div class="div-foto"><img id="imgPath" src=""></div>
         <div class="div-info">
-            <h1 id = "title"></h1>
-            <h2><span>13€</span></h2>
+            <h1 id ="title"></h1>
+            <h3 id= "price">13€</h3>
             <i>Brandom Sanderson</i>
             <br><br>
             <p id="content"></p>
@@ -28,8 +31,6 @@
     </div>
     
     <div class="div-fotos"></div>
-    <script type="module" src="/script/pototype.js"></script>
-    <script type="module" src="/script/carry.js"></script>
-    <script type="module" src="/script/server.js"></script>
+    
 </body>
 </html>

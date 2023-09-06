@@ -5,8 +5,8 @@
 }
 
 .div-main{
-    color: aliceblue;
-    height: 46vw;
+    color: rgb(245, 245, 255);
+    height: 90%;
     display: flex;
     position: relative;
     background-color: rgb(243, 122, 67);
@@ -19,8 +19,9 @@
     display: flex;
     align-items: center;
     justify-content: end;
-    height: 5vw;
-    background-color: aliceblue;
+    height: 10%;
+    background-color: rgb(19,19,19);
+
 }
 
 .div-foto{
@@ -31,8 +32,9 @@
 }
 
 .div-search {
-    padding-left: 100PX;
-    padding-top: -200PX;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     font-size: 20px;
     color: rgb(243, 122, 67);
@@ -47,14 +49,16 @@
 }
 
 .carry-list{
+    border-radius: 5px;
     position: absolute;
     right: -100px;
     height: 80%;
     width: 15%;
     color: #000;
     padding: 20px;
-    margin: 20px 120px;
-    background: rgb(249, 249, 255);
+    margin-top: 20px;
+    margin-right: 130px;
+    background: rgb(245, 245, 255);
     transition: opacity 0.2s ease, max-height 0.2s ease;
 }
 
@@ -67,25 +71,29 @@
 
 .div-foto > img{
     max-height: 600px;
+    border-radius: 3px;
 }
 
 .btn-carry{
     margin-top: 4vw;
     padding: 0.5em;
     font-size: 20px;
-    background-color: #000;
-    color: rgb(242, 249, 255);
-    border-radius: 10px;
+    background-color: rgb(31, 31, 31);
+    color: rgb(220, 238, 255);
+    border-radius: 5px;
 }
 
 .div-fotos{
-    position: relative;
+    padding-left: 150px;
+    background: rgb(245, 245, 255);
 }
 
 .div-fotos a > img{
+    margin: 40px;
     max-width: 250px;
-    max-height: 400px;
-    margin: 100px;
+    max-height: 380px;
+    border-radius: 3px;
+    object-fit: cover;
 }
 
 #btn-search{
@@ -113,13 +121,9 @@
     width: 90%;
 }
 
-.delate-producto{
+.btn-product{
     height: 20px;
     width: 20px;
-}
-
-span {
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -127,11 +131,8 @@ span {
     width: 800px;
 }
 
-button:hover{
-    background-color: rgb(59, 59, 59);
-}
-
 input{
+    background-color:  rgb(245, 245, 255);
     height: 30px;
     width: 400px;
     font-size: 15px;
@@ -139,6 +140,10 @@ input{
     font-family: monospace;
     color: #000;
     outline-color: rgb(241, 114, 9);
+}
+input::selection{
+    background: rgb(241, 114, 9);
+    color:  rgb(245, 245, 255);
 }
 
 #lupa{
@@ -148,11 +153,36 @@ input{
 
 #home{
     margin-left: 50px;
-    height: 80px;
-    width: 100px;
-}
-#home > img{
-    margin: 10px 10px;
     height: 60px;
-    width: 60px;
+    width: 70px;
+    border-radius: 20px;
+}
+#home:hover{
+    background-color: #000;
+}
+
+#carry{
+    border-radius: 50px;
+    height: 50px;
+    margin-right: 60px;
+}
+
+::selection{
+    color: rgb(241, 114, 9);
+    background-color:  rgb(245, 245, 255);
+}
+.carry-list::selection{
+    background: rgb(241, 114, 9);
+    color:  rgb(245, 245, 255);
+}
+
+#numBooks{
+    width: 15px;
+    height: 20px;
+    margin-bottom: -20px;
+    margin-right: 5px;
+}
+.div-producto > p::selection{
+    background: rgb(241, 114, 9);
+    color:  rgb(245, 245, 255);
 }

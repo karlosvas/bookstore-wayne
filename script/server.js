@@ -3,18 +3,10 @@
 import { searchMatches } from "./search.js";
 import { books } from "./search.js";
 
-const btn = document.getElementById("btn-search");
 const input = document.getElementById("input");
+const home = document.getElementById("home");
 
 let res = "";
-
-btn.addEventListener("click", () => {
-  res = input.value;
-  input.value = "";
-  if (books < 20) {
-    searchMatches(res);
-  }
-});
 
 input.addEventListener("keydown", (event) => {
   if (event.keyCode === 13) {
@@ -26,3 +18,10 @@ input.addEventListener("keydown", (event) => {
     }
   }
 });
+
+if (home != null) {
+  home.addEventListener("click", () => {
+    document.cookie = " ";
+    window.location.href = "/";
+  });
+}
