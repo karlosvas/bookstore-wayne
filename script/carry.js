@@ -2,7 +2,7 @@
 
 import { data } from "./search.js";
 const addCarry = document.querySelector(".btn-carry");
-import { obtenerCookie, addJSON, cookiesCarry } from "./cookies.js";
+import { obtenerCookie, addJSON, cookiesCarry, addCookie } from "./cookies.js";
 
 export let carryObj = {
   products: [],
@@ -10,6 +10,7 @@ export let carryObj = {
   carry: false,
   numCookie: 0,
   carryLocal: 0,
+  numLocal: [],
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -17,21 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
   cookiesCarry();
   addJSON(id);
 });
-
-const addCookie = () => {
-  carryObj.carryLocal++;
-  if (carryObj.numCookie == 1) {
-    document.cookie = `carry=${data.book.title}`;
-  } else if (
-    !carryObj.products.includes(data.book.title) &&
-    carryObj.numCookie > 1
-  ) {
-    document.cookie = `carry=${carryObj.products}`;
-  }
-  document.cookie = `numCookie=${carryObj.numCookie}`;
-};
-
 addCarry.addEventListener("click", () => {
+  carryObj.carryLocal;
   carryObj.numCookie++;
   addCookie();
   if (document.querySelector(".carry-list") == null) {
@@ -43,7 +31,6 @@ addCarry.addEventListener("click", () => {
 });
 
 const main = document.querySelector(".div-main");
-
 carry.addEventListener("click", () => {
   if (document.querySelector(".carry-list") == null) {
     makeCarry();
@@ -52,7 +39,7 @@ carry.addEventListener("click", () => {
   }
   if (carryObj.open == true) {
     updateCarry();
-    document.querySelector(".carry-list").style.opacity = "1";
+    main.querySelector(".carry-list").style.opacity = "1";
     carryObj.open = false;
   } else {
     main.querySelector(".carry-list").style.opacity = "0";
@@ -75,11 +62,9 @@ const addProduct = (book) => {
     carryObj.products = [data.book.title];
     document.cookie = `carry=${carryObj.products}`;
   } else if (!carryObj.products.includes(book)) {
-    console.log("No esta incluido");
     carryObj.products.push(data.book.title);
     document.cookie = `carry=${carryObj.products}`;
   }
-  console.log(carryObj.products);
   for (let i = 0; i < carryObj.products.length; i++) {
     const deleteButton = document.createElement("button");
     const deleteImage = document.createElement("img");
@@ -94,6 +79,7 @@ const addProduct = (book) => {
     deleteButton.classList.add("btn-product");
     numBooks.classList.add("numBook");
     numBooks.id = `numBooks${i}`;
+    deleteButton.id = `numBooks${i}`;
     document.querySelector(".carry-list").appendChild(product);
     deleteButton.appendChild(deleteImage);
     p.appendChild(ptext);
@@ -101,24 +87,17 @@ const addProduct = (book) => {
     product.appendChild(numBooks);
     product.appendChild(deleteButton);
   }
-
   carryObj.carry = true;
   deleteProductEventEvent();
 };
 
 const deleteProductEventEvent = () => {
-  console.log("se puede borrar");
   const productDivs = document.querySelectorAll(".div-producto");
-
-  productDivs.forEach((productDiv) => {
-    const btnProduct = productDiv.querySelector(".btn-product");
+  for (let btnProduct of productDivs) {
     btnProduct.addEventListener("click", (event) => {
       event.stopPropagation();
-      console.log(carryObj.numCookie);
-      if (carryObj.numCookie == 1) {
-        console.log("ultimo");
-        console.log(productDiv, carryObj.numCookie);
-        productDiv.remove();
+      if (carryObj.numCookie <= 1) {
+        btnProduct.remove();
         carryObj.numCookie--;
         carryObj.carry = false;
       } else if (carryObj.numCookie > 1) {
@@ -126,24 +105,24 @@ const deleteProductEventEvent = () => {
         updateCarry();
       }
     });
-  });
+  }
 };
 
 const updateCarry = () => {
   if (carryObj.carry == false && carryObj.numCookie > 0) {
-    console.log("añadiendo producto");
     addProduct(data.book.title);
   }
   if (document.getElementById(`numBooks0`) !== null) {
+    let index = carryObj.products.indexOf(data.book.title);
+    findCarryLocal(index);
     for (let i = 0; i < carryObj.products.length; i++) {
-      let index = carryObj.products.indexOf(data.book.title);
-      if (i == index) {
-        document.getElementById(`numBooks${i}`).textContent =
-          carryObj.carryLocal;
-      } else {
-        document.getElementById(`numBooks${i}`).textContent =
-          carryObj.numCookie;
-      }
+      document.getElementById(`numBooks${index}`).textContent =
+        carryObj.numLocal[index];
     }
   }
+};
+
+const findCarryLocal = (index) => {
+  carryObj.numLocal = Object.values(carryObj.numLocal);
+  carryObj.numLocal[index] = carryObj.carryLocal;
 };

@@ -41,14 +41,26 @@ export const cookiesCarry = () => {
   let carry = obtenerCookie("carry");
   let numCookie = obtenerCookie("numCookie");
 
-  if (carryObj.products !== undefined) {
-    if (numCookie > 1) {
-      carry = carry.split(",");
-    }
+  if (carryObj.products !== undefined && carry !== undefined) {
+    console.log(carry);
+    carry = carry.split(",");
     carryObj.products = carry;
   }
   if (numCookie !== undefined) {
     carryObj.numCookie = numCookie;
   }
   console.log(carry, numCookie);
+};
+
+export const addCookie = () => {
+  carryObj.carryLocal++;
+  if (carryObj.numCookie == 1) {
+    document.cookie = `carry=${data.book.title}`;
+  } else if (
+    !carryObj.products.includes(data.book.title) &&
+    carryObj.numCookie > 1
+  ) {
+    document.cookie = `carry=${carryObj.products}`;
+  }
+  document.cookie = `numCookie=${carryObj.numCookie}`;
 };
