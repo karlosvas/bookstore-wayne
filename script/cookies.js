@@ -2,8 +2,9 @@
 
 import { readJSON } from "./search.js";
 import { data } from "./search.js";
+import { carryObj } from "./carry.js";
 
-const addJSON = (book) => {
+export const addJSON = (book) => {
   readJSON(book)
     .then(() => {
       const bookData = data.book;
@@ -22,17 +23,32 @@ const addJSON = (book) => {
     });
 };
 
-const obtenerCookie = (cookieName) => {
+export const obtenerCookie = (cookieName) => {
   let cookies = document.cookie;
   cookies = cookies.split(";");
+
   for (let cookie of cookies) {
     cookie = cookie.trim();
-    if (cookie.startsWith(cookieName)) cookie = cookie.split("=")[1];
-    return cookie;
+
+    if (cookie.startsWith(cookieName)) {
+      cookie = cookie.split("=")[1];
+      return cookie;
+    }
   }
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-  const id = obtenerCookie("id");
-  addJSON(id);
-});
+export const cookiesCarry = () => {
+  let carry = obtenerCookie("carry");
+  let numCookie = obtenerCookie("numCookie");
+
+  if (carryObj.products !== undefined) {
+    if (numCookie > 1) {
+      carry = carry.split(",");
+    }
+    carryObj.products = carry;
+  }
+  if (numCookie !== undefined) {
+    carryObj.numCookie = numCookie;
+  }
+  console.log(carry, numCookie);
+};

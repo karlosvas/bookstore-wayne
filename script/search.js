@@ -2,7 +2,7 @@
 
 export let books = 0;
 export let data = {
-  books: "",
+  allBooks: "",
   mistbornData: "",
   archivoData: "",
   book: "",
@@ -25,6 +25,7 @@ export function searchMatches(res) {
     }
   }
 }
+
 export const readJSON = async (res) => {
   const response = await fetch("/JSON/books.json");
   if (!response.ok) {
@@ -32,18 +33,13 @@ export const readJSON = async (res) => {
   }
   const jsonData = await response.json();
   const bookArray = [...jsonData.mistborn, ...jsonData.archivo];
-  data.books = bookArray;
+  data.allBooks = bookArray;
   data.mistbornData = jsonData.mistborn;
   data.archivoData = jsonData.archivo;
+
   const foundBook = bookArray.find((book) => book.id === res);
   if (foundBook) {
     data.book = foundBook;
-  } else if (res == "mistborn") {
-    const mistborArr = bookArray[0];
-    data.book = mistborArr;
-  } else if (res == "archivo") {
-    const archivoArr = bookArray[1];
-    data.book = archivoArr;
   }
 };
 

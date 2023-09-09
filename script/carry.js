@@ -1,27 +1,45 @@
 "use strict";
 
+import { data } from "./search.js";
 const addCarry = document.querySelector(".btn-carry");
-const title = document.getElementById("title");
+import { obtenerCookie, addJSON, cookiesCarry } from "./cookies.js";
 
-let carryObj = {
+export let carryObj = {
   products: [],
   open: false,
   carry: false,
-  numBooks: 0,
+  numCookie: 0,
+  carryLocal: 0,
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+  const id = obtenerCookie("id");
+  cookiesCarry();
+  addJSON(id);
+});
+
+const addCookie = () => {
+  carryObj.carryLocal++;
+  if (carryObj.numCookie == 1) {
+    document.cookie = `carry=${data.book.title}`;
+  } else if (
+    !carryObj.products.includes(data.book.title) &&
+    carryObj.numCookie > 1
+  ) {
+    document.cookie = `carry=${carryObj.products}`;
+  }
+  document.cookie = `numCookie=${carryObj.numCookie}`;
 };
 
 addCarry.addEventListener("click", () => {
-  carryObj.products.push(title.innerHTML);
-  carryObj.numBooks++;
+  carryObj.numCookie++;
+  addCookie();
   if (document.querySelector(".carry-list") == null) {
     makeCarry();
     main.querySelector(".carry-list").style.opacity = "0";
     carryObj.open = true;
   }
   updateCarry();
-  if (carryObj.numBooks == 1) {
-    deleteProductEventEvent();
-  }
 });
 
 const main = document.querySelector(".div-main");
@@ -53,55 +71,79 @@ const makeCarry = () => {
 };
 
 const addProduct = (book) => {
-  const deleteButton = document.createElement("button");
-  const deleteImage = document.createElement("img");
-  const product = document.createElement("div");
-  const p = document.createElement("p");
-  const ptext = document.createTextNode(book);
-  const numBooks = document.createElement("p");
-
-  deleteImage.src = "/img/x.png";
-  deleteImage.classList.add("delate-img");
-  product.classList.add("div-producto");
-  deleteButton.classList.add("btn-product");
-  numBooks.id = "numBooks";
-  document.querySelector(".carry-list").appendChild(product);
-  deleteButton.appendChild(deleteImage);
-  p.appendChild(ptext);
-  product.appendChild(p);
-  product.appendChild(numBooks);
-  product.appendChild(deleteButton);
-
-  if (carryObj.products.includes(book)) {
-    carryObj.carry = true;
+  if (carryObj.products == undefined) {
+    carryObj.products = [data.book.title];
+    document.cookie = `carry=${carryObj.products}`;
+  } else if (!carryObj.products.includes(book)) {
+    console.log("No esta incluido");
+    carryObj.products.push(data.book.title);
+    document.cookie = `carry=${carryObj.products}`;
   }
+  console.log(carryObj.products);
+  for (let i = 0; i < carryObj.products.length; i++) {
+    const deleteButton = document.createElement("button");
+    const deleteImage = document.createElement("img");
+    const product = document.createElement("div");
+    const p = document.createElement("p");
+    const ptext = document.createTextNode(carryObj.products[i]);
+    const numBooks = document.createElement("p");
+
+    deleteImage.src = "/img/x.png";
+    deleteImage.classList.add("delate-img");
+    product.classList.add("div-producto");
+    deleteButton.classList.add("btn-product");
+    numBooks.classList.add("numBook");
+    numBooks.id = `numBooks${i}`;
+    document.querySelector(".carry-list").appendChild(product);
+    deleteButton.appendChild(deleteImage);
+    p.appendChild(ptext);
+    product.appendChild(p);
+    product.appendChild(numBooks);
+    product.appendChild(deleteButton);
+  }
+
+  carryObj.carry = true;
+  deleteProductEventEvent();
 };
 
 const deleteProductEventEvent = () => {
-  console.log("afirmativo");
+  console.log("se puede borrar");
   const productDivs = document.querySelectorAll(".div-producto");
 
   productDivs.forEach((productDiv) => {
     const btnProduct = productDiv.querySelector(".btn-product");
     btnProduct.addEventListener("click", (event) => {
       event.stopPropagation();
-      if (carryObj.numBooks == 1) {
+      console.log(carryObj.numCookie);
+      if (carryObj.numCookie == 1) {
+        console.log("ultimo");
+        console.log(productDiv, carryObj.numCookie);
         productDiv.remove();
-        carryObj.numBooks--;
+        carryObj.numCookie--;
         carryObj.carry = false;
+      } else if (carryObj.numCookie > 1) {
+        carryObj.numCookie--;
+        updateCarry();
       }
-      if (carryObj.numBooks > 1) {
-        carryObj.numBooks--;
-      }
-      updateCarry();
     });
   });
 };
 
 const updateCarry = () => {
-  let book = carryObj.products[0];
-  if (carryObj.carry == false && carryObj.numBooks > 0) addProduct(book);
-  if (document.getElementById("numBooks") !== null) {
-    document.getElementById("numBooks").textContent = carryObj.numBooks;
+  if (carryObj.carry == false && carryObj.numCookie > 0) {
+    console.log("añadiendo producto");
+    addProduct(data.book.title);
+  }
+  if (document.getElementById(`numBooks0`) !== null) {
+    for (let i = 0; i < carryObj.products.length; i++) {
+      let index = carryObj.products.indexOf(data.book.title);
+      if (i == index) {
+        document.getElementById(`numBooks${i}`).textContent =
+          carryObj.carryLocal;
+      } else {
+        document.getElementById(`numBooks${i}`).textContent =
+          carryObj.numCookie;
+      }
+    }
   }
 };
