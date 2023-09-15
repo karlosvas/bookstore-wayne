@@ -3,8 +3,6 @@
 export let books = 0;
 export let data = {
   allBooks: "",
-  mistbornData: "",
-  archivoData: "",
   book: "",
 };
 
@@ -34,8 +32,6 @@ export const readJSON = async (res) => {
   const jsonData = await response.json();
   const bookArray = [...jsonData.mistborn, ...jsonData.archivo];
   data.allBooks = bookArray;
-  data.mistbornData = jsonData.mistborn;
-  data.archivoData = jsonData.archivo;
 
   const foundBook = bookArray.find((book) => book.id === res);
   if (foundBook) {
