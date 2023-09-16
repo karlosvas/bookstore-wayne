@@ -1,8 +1,8 @@
 "use strict";
 
 import { data } from "./search.js";
-const addCarry = document.querySelector(".btn-carry");
-import { obtenerCookie, addJSON, cookiesCarry, addCookie } from "./cookies.js";
+import { obtenerCookie, addJSON, addCookie } from "./cookies.js";
+import { updateStart } from "./update.js"
 
 export let Carry = {
   products: [],
@@ -16,10 +16,10 @@ export let Carry = {
 document.addEventListener("DOMContentLoaded", function () {
   let id = obtenerCookie("id").join();
   addJSON(id);
-  cookiesCarry();
+  updateStart();
 });
 
-addCarry.addEventListener("click", () => {
+document.querySelector(".btn-carry").addEventListener("click", () => {
   Carry.localCarry++;
   document.cookie = `localCarry=${Carry.localCarry}`;
   if (document.querySelector(".carry-list") == null) {
@@ -80,8 +80,8 @@ const addProduct = () => {
     product.appendChild(numBooks);
     product.appendChild(deleteButton);
   }
-  Carry.inCarry = true;
   deleteProductEventEvent();
+  Carry.inCarry = true
 };
 
 const deleteProductEventEvent = () => {
@@ -116,7 +116,6 @@ const updateCarry = () => {
 
   if (document.getElementById(`numBooks0`) !== null) {
     let index = Carry.products.indexOf(data.book.title);
-
     for (let i = 0; i < Carry.products.length; i++) {
       if (i == index) {
         document.getElementById(`numBooks${index}`).textContent = Carry.localCarry;

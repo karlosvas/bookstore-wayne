@@ -37,36 +37,6 @@ export const obtenerCookie = (cookieName) => {
   }
 };
 
-export const cookiesCarry = () => {
-  let carry = obtenerCookie("carry");
-  let localCarry = obtenerCookie("localCarry");
-  let indexCarry = obtenerCookie("indexCarry");
-
-  if (carry !== undefined) {
-    Carry.products = carry;
-  }
-
-  setTimeout(() => {
-    let book = data.book.title
-    let index = Carry.products.indexOf(book);
-
-    if (localCarry !== undefined) {
-      if (Carry.products[index] !== book) {
-        Carry.indexCarry.unshift(localCarry)
-        document.cookie = `indexCarry=${Carry.indexCarry}`;
-        Carry.localCarry = 0
-      } else {
-        Carry.localCarry = localCarry
-      }
-    }
-  }, 100)
-
-  if (indexCarry !== undefined) {
-    Carry.indexCarry = indexCarry
-  }
-
-};
-
 export const addCookie = () => {
   const book = data.book.title;
 
