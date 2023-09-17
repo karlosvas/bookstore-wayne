@@ -40,13 +40,12 @@ export const obtenerCookie = (cookieName) => {
 export const addCookie = () => {
   const book = data.book.title;
 
-  console.log(data.book.title, Carry.products[Carry.products.length - 1])
   if (Carry.products == undefined) {
     Carry.products = [book];
-    document.cookie = `carry=${Carry.products}`;
+    document.cookie = `carryCookie=${Carry.products}`;
   } else if (!Carry.products.includes(book)) {
     Carry.products.push(book);
-    document.cookie = `carry=${Carry.products}`;
+    document.cookie = `carryCookie=${Carry.products}`;
   }
 
   if (Carry.indexCarry == undefined) {

@@ -19,6 +19,7 @@ input.addEventListener("keydown", (event) => {
   }
 });
 
+
 if (home != null) {
   home.addEventListener("click", () => {
     document.cookie = " ";
