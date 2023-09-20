@@ -61,8 +61,8 @@ input{
         align-content: center;
         & img{
             margin-right: 100px;
-            max-height: 30vw;
-            border-radius: 3px;
+            height: 30vw;
+            border-radius: 10px;
         }
     }
     & .div-info{

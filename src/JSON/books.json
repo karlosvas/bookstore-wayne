@@ -72,5 +72,32 @@
             "imagePath": "/img/archivo4.png",
             "price": "33,35€"
         }
+    ],
+    "harry": [
+        {
+        "id": "harry1",
+        "title": "Harry Potter y la piedra filosofal",
+        "content": "En esta edición especial de Harry Potter y la piedra filosofal, el texto completo e íntegro de la obra original de J.K. Rowling va acompañado por hermosas ilustraciones a todo color en casi todas las páginas, un diseño excelente y varias sorpresas interactivas de ingeniería en papel, obra del célebre estudio MinaLima. Una nueva forma de descubrir la carta de admisión de Harry a Hogwarts, la entrada mágica al callejón Diagon, el suntuoso festín en el Gran Salón de Hogwarts...",
+        "imagePath": "https://m.media-amazon.com/images/I/91NW7CBaVwL._SY466_.jpg",
+        "price": "34,14€"
+        }
+    ],
+    "tatiana": [
+        {
+        "id": "tatiana1",
+        "title": "El verano en que mi madre tuvo los ojos verdes",
+        "content": "Aleksy aún recuerda el último verano que pasó con su madre. Han transcurrido muchos años, pero pronto vuelve a verse sacudido por las mismas emociones que lo asediaron en aquel momento: el rencor, la tristeza, la rabia. ¿Cómo perdonar a la madre que lo rechazó? ¿Cómo enfrentarse a la enfermedad que la está consumiendo? Este es el relato de un verano de reconciliación en el que madre e hijo bajan las armas, espoleados por la llegada de lo inevitable y por la necesidad de hacer las paces entre sí y consigo mismos. Un brutal testimonio que conjuga el resentimiento, la impotencia y la fragilidad de las relaciones maternofiliales. Una poderosa novela que entrelaza la vida y la muerte en una apelación al amor y al perdón. Uno de los grandes descubrimientos de la literatura europea actual.",
+        "imagePath": "https://imagessl9.casadellibro.com/a/l/s7/59/9788417553159.webp",
+        "price": "12,32€"
+        }
+    ],
+    "mariposas": [
+        {
+        "id": "mariposas1",
+        "title": "Mariposas monarcas",
+        "content": "Hace mil vidas conocer a Marta Sánchez payerpaj y VI en ella una mariposa monarca. Estaba al frente de una clase de literatura y escritura para adultos en medio de la meseta que a mí me hizo palpitar; sentir envidia de los perros que asisten tras los ventanales a sus clases. Y de las mujeres y los hombres de pueblo que cada día escuchaban un verso, leían un libro y crecen juntos. Personas sin edad guiados por la pasión de Marta por cada palabra. Mi trabajo es una experiencia vital, y descubrimiento, de dolor y emoción por ver que hay tantos mundos que están en este:' Marta, mariposa monarca, llevaba en su cuerpo el peso de haber atravesado el océano varias veces y haber se instalado más allá, en aquellas montañas donde me hablaron los chamanes. Esa mariposa tuvo que remontar huracanes, aprender a buscar y disfrutar de la brisa a favor; adaptarse al frío. Amamantar y crear sil propio ecosistema que donde alimentarse alimentando.",
+        "imagePath": "https://imagessl6.casadellibro.com/a/l/s7/66/9788418115066.webp",
+        "price": "12,32€" 
+        }
     ]
 }

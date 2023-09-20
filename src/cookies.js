@@ -8,7 +8,7 @@ export const addJSON = (book) => {
   readJSON(book)
     .then(() => {
       const bookData = data.book;
-
+      console.log(bookData)
       if (bookData) {
         document.getElementById("title").textContent = bookData.title;
         document.getElementById("content").textContent = bookData.content;

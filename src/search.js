@@ -1,28 +1,13 @@
 "use strict";
 
-export let books = 0;
 export let data = {
+  collection: "",
   allBooks: "",
   book: "",
+  mistborn: "",
+  archivo: "",
+  searchBooks: 0
 };
-
-export function searchMatches(res) {
-  if (res.includes("mistborn")) {
-    let titulo = "mistborn" + findNumber(res, 6);
-    books++;
-    if (titulo != "mistbornundefined" && titulo !== "mistborn") {
-      createBook(titulo);
-    }
-  }
-
-  if (res.includes("archivo") || res.includes("tormentas")) {
-    let titulo = "archivo" + findNumber(res, 4);
-    books++;
-    if ((titulo != "archivoundefined") | (titulo == "archivo")) {
-      createBook(titulo);
-    }
-  }
-}
 
 export const readJSON = async (res) => {
   const response = await fetch("/JSON/books.json");
@@ -30,36 +15,78 @@ export const readJSON = async (res) => {
     throw new Error("Error al cargar el archivo JSON");
   }
   const jsonData = await response.json();
-  const bookArray = [...jsonData.mistborn, ...jsonData.archivo];
+  const bookArray = [...jsonData.mistborn, ...jsonData.archivo, ...jsonData.harry, ...jsonData.tatiana, ...jsonData.mariposas];
+  const collection = Object.keys(jsonData)
+  data.collection = collection
   data.allBooks = bookArray;
-
+  console.log(bookArray)
   const foundBook = bookArray.find((book) => book.id === res);
   if (foundBook) {
+    console.log("coincide")
     data.book = foundBook;
   }
 };
 
-const findNumber = (res, maxLength) => {
-  res = res.split(" ");
-  let num = 1;
-  for (let actualNum of res) {
-    if (actualNum <= maxLength) {
-      num = actualNum;
-      return num;
-    } else if (actualNum > maxLength) return undefined;
-  }
-  return num;
-};
+document.addEventListener("DOMContentLoaded", function () {
+  readJSON()
+});
 
-const createBook = (titulo) => {
+export function searchMatches(res) {
+  let title = ""
+  for (let book of res) {
+    if (data.collection.includes(book)) {
+      title = book
+    }
+    if (!isNaN(book)) {
+      title += book
+    }
+  }
+  const findBook = data.allBooks.find((libro) => libro.id === title);
+  const firstFindBook = data.allBooks.find((libro) => libro.id === title + "1");
+  if (findBook) {
+    data.book = findBook
+  } else if (firstFindBook) {
+    title += "1"
+    data.book = firstFindBook
+  } else { return }
+  createBook(title)
+}
+
+const createBook = (title) => {
   const divFotos = document.querySelector(".div-fotos");
   const anchor = document.createElement("a");
   anchor.href = "/html/books.html";
   const img = document.createElement("img");
-  img.src = `/img/${titulo}.png`;
+  img.src = data.book.imagePath;
   img.addEventListener("click", () => {
-    document.cookie = `id=${titulo}; path=/;`;
+    document.cookie = `id=${title}; path=/;`;
   });
   anchor.appendChild(img);
   divFotos.appendChild(anchor);
 };
+
+
+// let Objeto = {
+//   price: "34$"
+// }
+
+// let Array = []
+
+export const findPrice = (title, arr) => {
+  Object.values(data.allBooks).forEach(function (elemento) {
+    if (title === elemento.title) {
+      arr.push(elemento.price);
+    }
+  });
+};
+
+export const findBook = (title, arr) => {
+  Object.values(data.allBooks).forEach(function (elemento) {
+    if (title === elemento.title) {
+      arr.push(elemento.book);
+    }
+  });
+};
+
+// Ejemplo de uso:
+// findBook("Harrry Potter", Array, price)
