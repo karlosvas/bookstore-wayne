@@ -2,11 +2,11 @@
 
 export let data = {
   collection: "",
-  allBooks: "",
+  allBooks: [],
   book: "",
   mistborn: "",
   archivo: "",
-  searchBooks: 0
+  searchBooks: 0,
 };
 
 export const readJSON = async (res) => {
@@ -15,12 +15,15 @@ export const readJSON = async (res) => {
     throw new Error("Error al cargar el archivo JSON");
   }
   const jsonData = await response.json();
-  const bookArray = [...jsonData.mistborn, ...jsonData.archivo, ...jsonData.harry, ...jsonData.tatiana, ...jsonData.mariposas];
-  const collection = Object.keys(jsonData)
-  data.collection = collection
-  data.allBooks = bookArray;
-  console.log(bookArray)
-  const foundBook = bookArray.find((book) => book.id === res);
+  for (const key in jsonData) {
+    if (jsonData.hasOwnProperty(key)) {
+      data.allBooks.push(...jsonData[key]);
+    }
+  }
+  // const bookArray = [...jsonData.mistborn, ...jsonData.archivo, ...jsonData.harry, ...jsonData.tatiana, ...jsonData.mariposas];
+  data.collection = Object.keys(jsonData)
+
+  const foundBook = data.allBooks.find((book) => book.id === res);
   if (foundBook) {
     console.log("coincide")
     data.book = foundBook;
