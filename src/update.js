@@ -3,10 +3,10 @@
 import { data } from "./search.js";
 import { Carry } from "./carry.js";
 import { obtenerCookie } from "./cookies.js"
-
 export const updateStart = () => {
     let indexCarry = obtenerCookie("indexCarry");
     let carryCookie = obtenerCookie("carryCookie")
+    let localCarry = obtenerCookie("localCarry")
 
     if (Carry.indexCarry !== undefined) {
         Carry.indexCarry = indexCarry
@@ -16,70 +16,71 @@ export const updateStart = () => {
         Carry.products = carryCookie;
     }
 
+    if (localCarry !== undefined) {
+        setTimeout(() => {
+            if (Carry.products.includes(data.book.title)) Carry.localCarry = localCarry;
+            else Carry.localCarry = 0;
+        }, 100)
+    }
+
 }
 
-// if (carryCookie !== undefined) {
-//     if (carryCookie[0] == "") {
-//         carryCookie.shift()
-//     }
-//     Carry.products = carryCookie;
-// }
-// let comprobation = [...carryCookie]
-// const newComprobation = Object.values(comprobation);
-// newComprobation.pop()
-// let index = Carry.products.indexOf(book);
-// if (Carry.products[index] !== book && localCarry[0] !== "0") {
-//     Carry.indexCarry.push(localCarry)
-//     document.cookie = `indexCarry=${Carry.indexCarry}`;
-//     Carry.localCarry = 0
-// } else if (newComprobation.includes(book) && localCarry[0] !== "0") {
-//     if (Carry.indexCarry.length < carryCookie.length) {
-//         Carry.indexCarry[Carry.indexCarry.length] = localCarry
-//         document.cookie = `indexCarry=${Carry.indexCarry}`;
-//         console.log(Carry)
-//     }
-//     Carry.localCarry = indexCarry[index]
-// } else {
-//     Carry.localCarry = localCarry
-// }
-// if (indexCarry !== undefined) {
-//     if (indexCarry[0] == "") {
-//         indexCarry.shift()
-//     }
-//     Carry.indexCarry = indexCarry
-// };
-
-export const addProduct = (() => {
-    const book = data.book.title;
-    console.log(book)
-    if (!Carry.products.includes(book)) Carry.products.push(book)
-
+export const updateProduct = (() => {
     for (let i = 0; i < Carry.products.length; i++) {
         const deleteButton = document.createElement("button");
-        const deleteImage = document.createElement("img");
-        const product = document.createElement("div");
-        const p = document.createElement("p");
+        const productDiv = document.createElement("div");
+        const product = document.createElement("p");
         const nameBooks = document.createTextNode(Carry.products[i]);
         const numBooks = document.createElement("p");
-        const totalBooks = document.createElement("p");
         const priceBooks = document.createElement("b");
-        deleteImage.src = "/img/x.png";
-        deleteImage.classList.add("delate-img");
-        product.classList.add("div-producto");
+        const buttonContent = document.createTextNode("✖️");
+        const totalBooks = document.createElement("p");
+
+        productDiv.classList.add("div-producto");
         deleteButton.classList.add("btn-product");
         numBooks.classList.add("numBook");
         priceBooks.classList.add("priceBooks");
-        numBooks.id = `numBooks${i}`;
-        priceBooks.id = `priceBooks${i}`;
-        deleteButton.id = `numBooks${i}`;
         totalBooks.id = `totalBooks`;
-        document.querySelector(".carry-list").appendChild(product);
-        deleteButton.appendChild(deleteImage);
-        p.appendChild(nameBooks);
-        product.appendChild(p);
-        product.appendChild(numBooks);
-        product.appendChild(priceBooks);
-        product.appendChild(deleteButton);
-        product.appendChild(totalBooks);
+        product.id = `product`;
+
+        document.querySelector(".carry-list").appendChild(productDiv);
+        deleteButton.appendChild(buttonContent)
+        product.appendChild(nameBooks);
+        productDiv.appendChild(product);
+        productDiv.appendChild(numBooks);
+        productDiv.appendChild(priceBooks);
+        productDiv.appendChild(deleteButton);
+        productDiv.appendChild(totalBooks);
     }
+})
+
+export const updateNewProduct = (() => {
+    const book = data.book.title;
+    Carry.products.push(book)
+    if (Carry.indexCarry == undefined) Carry.indexCarry = [Carry.localCarry]
+    else Carry.indexCarry.push(Carry.localCarry)
+    const deleteButton = document.createElement("button");
+    const productDiv = document.createElement("div");
+    const product = document.createElement("p");
+    const nameBooks = document.createTextNode(Carry.products[Carry.products.length - 1]);
+    const numBooks = document.createElement("p");
+    const priceBooks = document.createElement("b");
+    const buttonContent = document.createTextNode("✖️");
+    const totalBooks = document.createElement("p");
+
+    productDiv.classList.add("div-producto");
+    deleteButton.classList.add("btn-product");
+    numBooks.classList.add("numBook");
+    priceBooks.classList.add("priceBooks");
+    totalBooks.id = `totalBooks`;
+    product.id = `product`;
+
+    document.querySelector(".carry-list").appendChild(productDiv);
+    deleteButton.appendChild(buttonContent)
+    product.appendChild(nameBooks);
+    productDiv.appendChild(product);
+    productDiv.appendChild(numBooks);
+    productDiv.appendChild(priceBooks);
+    productDiv.appendChild(deleteButton);
+    productDiv.appendChild(totalBooks);
 })

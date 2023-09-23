@@ -46,21 +46,21 @@ input{
 }
 
 .div-main{
-    padding-top: 100px;
+    padding:  80px 0px;
     color: rgb(245, 245, 255);
-    min-height: 80%;
+    min-height: auto;
     max-width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: rgb(255, 132, 75);
+    background-color:rgb(255, 132, 75);
     & .div-foto{
         height: 50%;
         display: flex;
         justify-content: center;
         align-content: center;
         & img{
-            margin-right: 100px;
+            margin-right: 60px;
             height: 30vw;
             border-radius: 10px;
         }
@@ -68,7 +68,7 @@ input{
     & .div-info{
         padding: 20px;
         & p{
-            max-width: 800px;
+            max-width: 650px;
         }
     }
     & .btn-carry{
@@ -77,17 +77,61 @@ input{
         border-radius: 5px;
         color: aliceblue;
         border-radius: 8px;
-        border: 1px solid transparent;
+        border: 5px solid transparent;
         font-size: 1.3em;
         font-weight: 500;
         font-family: inherit;
         background-color: #2c2c2c;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: border-color 0.2s;
     }
     & .btn-carry:hover {
         border-color: #e76a2f;
-        padding: 0.75em;
+    }
+    & .carry-list{
+        color: #000;
+        z-index: 10;
+        position: fixed;
+        border-radius: 10px;
+        right: -110px;
+        top: 80px;
+        height: 60%;
+        min-width: 280px;
+        padding: 20px;
+        margin-top: 40px;
+        margin-right: 130px;
+        background: rgb(245, 245, 255);
+        transition: opacity 0.2s ease, max-height 0.2s ease;
+        & .div-producto{
+            display: grid;
+            align-content: center;
+            width: 100%;
+            height: 20px;
+            margin-top: 40px;
+            & #product{
+                width: 80%;
+            }
+            & .numBook{
+                position: absolute;
+                margin-top: -20px;
+                right: 70px;
+            }
+            & .btn-product{
+                position: absolute;
+                margin-top: -20px;
+                right: 30px;
+                height: 23px;
+                width: 23px;
+                transition: all 0.2s;
+            }
+            & .btn-product:hover{
+                border-color: #e76a2f;
+            }
+        }
+    }
+    
+    & .carry-list.active {
+        opacity: 1;
     }
 }
 
@@ -118,29 +162,7 @@ input{
     }
 }
 
-.carry-list{
-    z-index: 10;
-    position: fixed;
-    border-radius: 5px;
-    right: -100px;
-    top: 100px;
-    height: 80%;
-    min-width: 300px;
-    color: #000;
-    padding: 20px;
-    margin-top: 40px;
-    margin-right: 130px;
-    background: rgb(245, 245, 255);
-    transition: opacity 0.2s ease, max-height 0.2s ease;
-}
-
-.carry-list.active {
-    opacity: 1;
-    color: #000;
-}
-
 .div-fotos{
-    background-color: rgb(194, 94, 48);
     padding-left: 150px;
     & img{
         margin: 40px;
@@ -149,36 +171,6 @@ input{
         border-radius: 3px;
         object-fit: cover;
     }
-}
-
-.delate-img{
-    width: 10px;
-    height: 10px;
-}
-
-.div-producto{
-    color: #000;
-    display: flex;
-    align-content: center;
-    width: 100%;
-    height: 20px;
-    margin-top: 15px;
-}
-
-.numBook{
-    position: absolute;
-    right: 50px;
-}
-
-.btn-product{
-    position: absolute;
-    right: 20px;
-    height: 20px;
-    width: 20px;
-    transition: all 0.2s;
-}
-.btn-product:hover{
-    border-color: #e76a2f;
 }
 
 input::selection{
@@ -220,7 +212,7 @@ input::selection{
 }
 
 #home:hover{
-   background-color: #494949;
+   background-color: #e7692f98;
 }
 
 ::selection{

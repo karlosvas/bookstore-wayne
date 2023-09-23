@@ -8,7 +8,6 @@ export const addJSON = (book) => {
   readJSON(book)
     .then(() => {
       const bookData = data.book;
-      console.log(bookData)
       if (bookData) {
         document.getElementById("title").textContent = bookData.title;
         document.getElementById("content").textContent = bookData.content;
@@ -37,7 +36,8 @@ export const obtenerCookie = (cookieName) => {
   }
 };
 
-export const addCookie = () => {
+export const updateCookies = () => {
   document.cookie = `carryCookie=${Carry.products}`
   document.cookie = `indexCarry=${Carry.indexCarry}`;
+  document.cookie = `localCarry=${Carry.localCarry}`;
 };

@@ -4,8 +4,6 @@ export let data = {
   collection: "",
   allBooks: [],
   book: "",
-  mistborn: "",
-  archivo: "",
   searchBooks: 0,
 };
 
@@ -20,7 +18,6 @@ export const readJSON = async (res) => {
       data.allBooks.push(...jsonData[key]);
     }
   }
-  // const bookArray = [...jsonData.mistborn, ...jsonData.archivo, ...jsonData.harry, ...jsonData.tatiana, ...jsonData.mariposas];
   data.collection = Object.keys(jsonData)
 
   const foundBook = data.allBooks.find((book) => book.id === res);
@@ -67,13 +64,6 @@ const createBook = (title) => {
   divFotos.appendChild(anchor);
 };
 
-
-// let Objeto = {
-//   price: "34$"
-// }
-
-// let Array = []
-
 export const findPrice = (title, arr) => {
   Object.values(data.allBooks).forEach(function (elemento) {
     if (title === elemento.title) {
@@ -89,6 +79,3 @@ export const findBook = (title, arr) => {
     }
   });
 };
-
-// Ejemplo de uso:
-// findBook("Harrry Potter", Array, price)

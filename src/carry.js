@@ -1,8 +1,9 @@
 "use strict";
 
 import { data } from "./search.js";
-import { obtenerCookie, addJSON, addCookie } from "./cookies.js";
-import { updateStart, addProduct } from "./update.js"
+import { obtenerCookie, addJSON, updateCookies } from "./cookies.js";
+import { updateStart, updateProduct, updateNewProduct } from "./update.js"
+import { deleteProductEvent, deleteNewProductEvent } from "./delate-carry.js"
 
 export let Carry = {
   products: [],
@@ -20,16 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.querySelector(".btn-carry").addEventListener("click", () => {
-  console.log(Carry)
+  Carry.localCarry++
   let index = Carry.products.indexOf(data.book.title);
-  if (index !== -1) {
-    console.log("Forma 1")
-    Carry.indexCarry[index]++
-  } else if (Carry.indexCarry == undefined) {
-    Carry.indexCarry = [1]
-  }
-
-  console.log(Carry.indexCarry)
+  if (index !== -1) Carry.indexCarry[index]++
 
   if (document.querySelector(".carry-list") == null) {
     makeCarry();
@@ -59,88 +53,54 @@ document.getElementById("carry").addEventListener("click", () => {
 const makeCarry = () => {
   const carrito = document.createElement("div");
   const carryContent = document.createTextNode(`Su carrito es:`);
-
   carrito.classList.add("carry-list");
   carrito.appendChild(carryContent);
 
   main.appendChild(carrito);
-};
-
-const deleteProductEvent = () => {
-  let indexCarry = Carry.indexCarry;
-  let carryCookie = Carry.products;
-
-  const productDivs = document.querySelectorAll(".div-producto");
+  const productDivs = document.querySelectorAll('.div-producto')
   if (productDivs) {
-    productDivs.forEach((btnProduct, index) => {
-      btnProduct.addEventListener("click", (event) => {
-        handleClick(event, btnProduct, index);
-      });
-    });
-  }
-
-  function handleClick(event, btnProduct, index) {
-    event.stopPropagation();
-    if (Carry.indexCarry[index] == 1) {
-      btnProduct.remove();
-      indexCarry.splice(index, 1);
-      carryCookie.splice(index, 1);
-      document.cookie = `indexCarry=${indexCarry}`;
-      document.cookie = `carryCookie=${carryCookie}`;
-      Carry.inCarry = false;
-
-    } else if (Carry.indexCarry[index] > 1) {
-      Carry.indexCarry[index]--;
-      document.cookie = `indexCarry=${Carry.indexCarry}`;
-
-    }
-    updateCarry();
+    updateProduct()
+    deleteProductEvent()
   }
 };
-
-
 
 const updateCarry = () => {
-  let index = Carry.products.indexOf(data.book.title);
-  if (Carry.inCarry == false) {
-    addProduct();
-    deleteProductEvent();
+  if (!Carry.products.includes(data.book.title) && Carry.inCarry == false && Carry.localCarry > 0) {
+    updateNewProduct()
+    deleteNewProductEvent()
     Carry.inCarry = true
   }
-  addCookie();
-  if (document.getElementById(`numBooks0`) !== null) {
-    let total = 0
-
-    for (let i = 0; i < Carry.products.length; i++) {
+  const productDivs = document.querySelectorAll('.div-producto')
+  if (productDivs) {
+    productDivs.forEach((elemento, i) => {
+      let total = 0;
       // Numero de productos
-      if (i == index) {
-        document.getElementById(`numBooks${index}`).textContent = Carry.localCarry;
+      if (elemento.textContent == data.book.title) {
+        elemento.querySelector('.numBook').textContent = Carry.localCarry;
       } else {
-        document.getElementById(`numBooks${i}`).textContent = Carry.indexCarry[i];
+        elemento.querySelector('.numBook').textContent = Carry.indexCarry[i];
       }
 
       // Precio de productos
-      let actualBookPrice
-      Object.values(data.allBooks).forEach(function (elemento) {
-        if (elemento.title === Carry.products[i]) {
-          actualBookPrice = elemento.price
+      let actualBookPrice;
+      Object.values(data.allBooks).forEach(function (book) {
+        if (book.title === Carry.products[i]) {
+          actualBookPrice = book.price;
         }
       });
 
-      let priceString = actualBookPrice.replace("€", "");
-      let priceBook = parseFloat(priceString.replace(",", "."))
+      let priceString = actualBookPrice.replace('€', '');
+      let priceBook = parseFloat(priceString.replace(',', '.'));
 
-      if (i == index) {
-        let total = priceBook * Carry.localCarry
-        document.getElementById(`priceBooks${i}`).textContent = total.toFixed(2) + "€"
+      if (Carry.indexCarry[i] == undefined) {
+        total += priceBook * Carry.localCarry;
       } else {
-        let total = priceBook * Carry.indexCarry[i]
-        document.getElementById(`priceBooks${i}`).textContent = total.toFixed(2) + "€"
+        total += priceBook * Carry.indexCarry[i];
       }
 
-      if (Carry.indexCarry[i] == undefined) total += priceBook * Carry.localCarry
-      else total += priceBook * Carry.indexCarry[i]
-      document.getElementById(`totalBooks`).textContent = total.toFixed(2) + "€"
-    }
+      elemento.querySelector('.priceBooks').textContent = total.toFixed(2) + '€';
+      document.getElementById('totalBooks').textContent = total.toFixed(2) + '€';
+    });
   }
-};
+  updateCookies();
+}
