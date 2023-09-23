@@ -38,18 +38,7 @@ export const obtenerCookie = (cookieName) => {
 };
 
 export const addCookie = () => {
-  const book = data.book.title;
-
-  if (Carry.products == undefined) {
-    Carry.products = [book];
-    document.cookie = `carryCookie=${Carry.products}`;
-  } else if (!Carry.products.includes(book)) {
-    Carry.products.push(book);
-    document.cookie = `carryCookie=${Carry.products}`;
-  }
-
-  if (Carry.indexCarry == undefined) {
-    Carry.indexCarry = [Carry.localCarry]
-    document.cookie = `indexCarry=${Carry.indexCarry}`;
-  }
+  document.cookie = `carryCookie=${Carry.products}`
+  document.cookie = `localCarry=${Carry.localCarry}`;
+  document.cookie = `indexCarry=${Carry.indexCarry}`;
 };

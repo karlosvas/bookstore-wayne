@@ -25,7 +25,6 @@ export const readJSON = async (res) => {
 
   const foundBook = data.allBooks.find((book) => book.id === res);
   if (foundBook) {
-    console.log("coincide")
     data.book = foundBook;
   }
 };
