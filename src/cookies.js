@@ -39,6 +39,5 @@ export const obtenerCookie = (cookieName) => {
 
 export const addCookie = () => {
   document.cookie = `carryCookie=${Carry.products}`
-  document.cookie = `localCarry=${Carry.localCarry}`;
   document.cookie = `indexCarry=${Carry.indexCarry}`;
 };

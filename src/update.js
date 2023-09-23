@@ -5,33 +5,25 @@ import { Carry } from "./carry.js";
 import { obtenerCookie } from "./cookies.js"
 
 export const updateStart = () => {
-    let localCarry = obtenerCookie("localCarry");
     let indexCarry = obtenerCookie("indexCarry");
-    const getData = () => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                let book = data.book.title
-                resolve(book)
-            }, 100)
-        })
-    }
-    // if (carryCookie !== undefined) {
-    //     if (carryCookie[0] == "") {
-    //         carryCookie.shift()
-    //     }
-    //     Carry.products = carryCookie;
-    // }
-    getData().then((book) => {
-        let index = Carry.products.indexOf(book);
-        if (Carry.products.includes(book)) {
-            Carry.localCarry = indexCarry[index]
-        } else {
-            Carry.localCarry = localCarry
-        }
+    let carryCookie = obtenerCookie("carryCookie")
 
-    })
+    if (Carry.indexCarry !== undefined) {
+        Carry.indexCarry = indexCarry
+    }
+
+    if (carryCookie !== undefined) {
+        Carry.products = carryCookie;
+    }
+
 }
 
+// if (carryCookie !== undefined) {
+//     if (carryCookie[0] == "") {
+//         carryCookie.shift()
+//     }
+//     Carry.products = carryCookie;
+// }
 // let comprobation = [...carryCookie]
 // const newComprobation = Object.values(comprobation);
 // newComprobation.pop()
@@ -59,8 +51,8 @@ export const updateStart = () => {
 
 export const addProduct = (() => {
     const book = data.book.title;
+    console.log(book)
     if (!Carry.products.includes(book)) Carry.products.push(book)
-    Carry.indexCarry.push(Carry.localCarry)
 
     for (let i = 0; i < Carry.products.length; i++) {
         const deleteButton = document.createElement("button");

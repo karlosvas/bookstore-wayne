@@ -20,7 +20,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.querySelector(".btn-carry").addEventListener("click", () => {
-  Carry.localCarry++;
+  console.log(Carry)
+  let index = Carry.products.indexOf(data.book.title);
+  if (index !== -1) {
+    console.log("Forma 1")
+    Carry.indexCarry[index]++
+  } else if (Carry.indexCarry == undefined) {
+    Carry.indexCarry = [1]
+  }
+
+  console.log(Carry.indexCarry)
+
   if (document.querySelector(".carry-list") == null) {
     makeCarry();
     main.querySelector(".carry-list").style.opacity = "0";
@@ -78,22 +88,11 @@ const deleteProductEvent = () => {
       document.cookie = `indexCarry=${indexCarry}`;
       document.cookie = `carryCookie=${carryCookie}`;
       Carry.inCarry = false;
+
     } else if (Carry.indexCarry[index] > 1) {
       Carry.indexCarry[index]--;
       document.cookie = `indexCarry=${Carry.indexCarry}`;
-    } else if (Carry.localCarry > 1) {
-      Carry.localCarry--;
-      document.cookie = `localCarry=${Carry.localCarry}`;
-    } else if (Carry.localCarry == 1) {
-      Carry.localCarry--;
-      btnProduct.remove();
-      console.log(carryCookie);
-      carryCookie.splice(index, 1);
-      console.log(carryCookie);
-      console.log(Carry.localCarry);
-      document.cookie = `localCarry=${Carry.localCarry}`;
-      document.cookie = `carryCookie=${carryCookie}`;
-      Carry.inCarry = false;
+
     }
     updateCarry();
   }
@@ -102,14 +101,14 @@ const deleteProductEvent = () => {
 
 
 const updateCarry = () => {
-  if (Carry.inCarry == false && Carry.localCarry > 0) {
+  let index = Carry.products.indexOf(data.book.title);
+  if (Carry.inCarry == false) {
     addProduct();
     deleteProductEvent();
     Carry.inCarry = true
   }
   addCookie();
   if (document.getElementById(`numBooks0`) !== null) {
-    let index = Carry.products.indexOf(data.book.title);
     let total = 0
 
     for (let i = 0; i < Carry.products.length; i++) {
