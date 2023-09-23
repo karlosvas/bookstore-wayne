@@ -1,7 +1,7 @@
 "use strict";
 
 import { searchMatches } from "./search.js";
-import { data } from "./search.js";
+import { Data } from "./search.js";
 
 const input = document.getElementById("input");
 const home = document.getElementById("home");
@@ -13,7 +13,7 @@ input.addEventListener("keydown", (event) => {
     res = input.value;
     res = res.toLocaleLowerCase()
     input.value = "";
-    if (data.searchBooks < 20) {
+    if (Data.searchBooks < 20) {
       searchMatches(res.split(" "));
       input.value = "";
     }

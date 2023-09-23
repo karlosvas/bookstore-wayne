@@ -1,13 +1,13 @@
 "use strict";
 
 import { readJSON } from "./search.js";
-import { data } from "./search.js";
+import { Data } from "./search.js";
 import { Carry } from "./carry.js";
 
 export const addJSON = (book) => {
   readJSON(book)
     .then(() => {
-      const bookData = data.book;
+      const bookData = Data.book;
       if (bookData) {
         document.getElementById("title").textContent = bookData.title;
         document.getElementById("content").textContent = bookData.content;

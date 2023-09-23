@@ -1,8 +1,10 @@
 "use strict"
 
-import { data } from "./search.js";
+import { Data } from "./search.js";
 import { Carry } from "./carry.js";
-import { obtenerCookie } from "./cookies.js"
+import { obtenerCookie, updateCookies } from "./cookies.js"
+import { deleteNewProductEvent } from "./delate-carry.js"
+
 export const updateStart = () => {
     let indexCarry = obtenerCookie("indexCarry");
     let carryCookie = obtenerCookie("carryCookie")
@@ -12,13 +14,13 @@ export const updateStart = () => {
         Carry.indexCarry = indexCarry
     }
 
-    if (carryCookie !== undefined) {
+    if (carryCookie !== undefined && carryCookie[0] !== "") {
         Carry.products = carryCookie;
     }
 
     if (localCarry !== undefined) {
         setTimeout(() => {
-            if (Carry.products.includes(data.book.title)) Carry.localCarry = localCarry;
+            if (Carry.products.includes(Data.book.title)) Carry.localCarry = localCarry;
             else Carry.localCarry = 0;
         }, 100)
     }
@@ -27,6 +29,7 @@ export const updateStart = () => {
 
 export const updateProduct = (() => {
     for (let i = 0; i < Carry.products.length; i++) {
+        if (Carry.localCarry == 0) return
         const deleteButton = document.createElement("button");
         const productDiv = document.createElement("div");
         const product = document.createElement("p");
@@ -55,7 +58,7 @@ export const updateProduct = (() => {
 })
 
 export const updateNewProduct = (() => {
-    const book = data.book.title;
+    const book = Data.book.title;
     Carry.products.push(book)
     if (Carry.indexCarry == undefined) Carry.indexCarry = [Carry.localCarry]
     else Carry.indexCarry.push(Carry.localCarry)
@@ -84,3 +87,44 @@ export const updateNewProduct = (() => {
     productDiv.appendChild(deleteButton);
     productDiv.appendChild(totalBooks);
 })
+
+export const updateCarry = () => {
+    if (!Carry.products.includes(Data.book.title) && Carry.inCarry == false && Carry.localCarry > 0) {
+        updateNewProduct()
+        deleteNewProductEvent()
+        Carry.inCarry = true
+    }
+    const productDivs = document.querySelectorAll('.div-producto')
+    if (productDivs) {
+        productDivs.forEach((elemento, i) => {
+            let total = 0;
+            // Numero de productos
+            if (elemento.textContent == Data.book.title) {
+                elemento.querySelector('.numBook').textContent = Carry.localCarry;
+            } else {
+                elemento.querySelector('.numBook').textContent = Carry.indexCarry[i];
+            }
+
+            // Precio de productos
+            let actualBookPrice;
+            Object.values(Data.allBooks).forEach(function (book) {
+                if (book.title === Carry.products[i]) {
+                    actualBookPrice = book.price;
+                }
+            });
+
+            let priceString = actualBookPrice.replace('€', '');
+            let priceBook = parseFloat(priceString.replace(',', '.'));
+
+            if (Carry.indexCarry[i] == undefined) {
+                total += priceBook * Carry.localCarry;
+            } else {
+                total += priceBook * Carry.indexCarry[i];
+            }
+
+            elemento.querySelector('.priceBooks').textContent = total.toFixed(2) + '€';
+            document.getElementById('totalBooks').textContent = total.toFixed(2) + '€';
+        });
+    }
+    updateCookies();
+}

@@ -1,6 +1,6 @@
 "use strict";
 
-export let data = {
+export let Data = {
   collection: "",
   allBooks: [],
   book: "",
@@ -15,14 +15,14 @@ export const readJSON = async (res) => {
   const jsonData = await response.json();
   for (const key in jsonData) {
     if (jsonData.hasOwnProperty(key)) {
-      data.allBooks.push(...jsonData[key]);
+      Data.allBooks.push(...jsonData[key]);
     }
   }
-  data.collection = Object.keys(jsonData)
+  Data.collection = Object.keys(jsonData)
 
-  const foundBook = data.allBooks.find((book) => book.id === res);
+  const foundBook = Data.allBooks.find((book) => book.id === res);
   if (foundBook) {
-    data.book = foundBook;
+    Data.book = foundBook;
   }
 };
 
@@ -33,20 +33,20 @@ document.addEventListener("DOMContentLoaded", function () {
 export function searchMatches(res) {
   let title = ""
   for (let book of res) {
-    if (data.collection.includes(book)) {
+    if (Data.collection.includes(book)) {
       title = book
     }
     if (!isNaN(book)) {
       title += book
     }
   }
-  const findBook = data.allBooks.find((libro) => libro.id === title);
-  const firstFindBook = data.allBooks.find((libro) => libro.id === title + "1");
+  const findBook = Data.allBooks.find((libro) => libro.id === title);
+  const firstFindBook = Data.allBooks.find((libro) => libro.id === title + "1");
   if (findBook) {
-    data.book = findBook
+    Data.book = findBook
   } else if (firstFindBook) {
     title += "1"
-    data.book = firstFindBook
+    Data.book = firstFindBook
   } else { return }
   createBook(title)
 }
@@ -56,7 +56,7 @@ const createBook = (title) => {
   const anchor = document.createElement("a");
   anchor.href = "/html/books.html";
   const img = document.createElement("img");
-  img.src = data.book.imagePath;
+  img.src = Data.book.imagePath;
   img.addEventListener("click", () => {
     document.cookie = `id=${title}; path=/;`;
   });
@@ -65,7 +65,7 @@ const createBook = (title) => {
 };
 
 export const findPrice = (title, arr) => {
-  Object.values(data.allBooks).forEach(function (elemento) {
+  Object.values(Data.allBooks).forEach(function (elemento) {
     if (title === elemento.title) {
       arr.push(elemento.price);
     }
@@ -73,7 +73,7 @@ export const findPrice = (title, arr) => {
 };
 
 export const findBook = (title, arr) => {
-  Object.values(data.allBooks).forEach(function (elemento) {
+  Object.values(Data.allBooks).forEach(function (elemento) {
     if (title === elemento.title) {
       arr.push(elemento.book);
     }
