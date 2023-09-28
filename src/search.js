@@ -57,6 +57,7 @@ const createBook = (title) => {
   anchor.href = "/html/books.html";
   const img = document.createElement("img");
   img.src = Data.book.imagePath;
+  img.className = "img-main";
   img.addEventListener("click", () => {
     document.cookie = `id=${title}; path=/;`;
   });

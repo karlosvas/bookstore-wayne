@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updateStart();
 });
 
-document.querySelector(".btn-carry").addEventListener("click", () => {
+document.querySelector(".btn-add-carry").addEventListener("click", () => {
   Carry.localCarry++
   let index = Carry.products.indexOf(Data.book.title);
   if (index !== -1) Carry.indexCarry[index]++
@@ -34,7 +34,7 @@ document.querySelector(".btn-carry").addEventListener("click", () => {
   updateCarry();
 });
 
-const main = document.querySelector(".div-main");
+const main = document.querySelector(".main");
 document.getElementById("carry").addEventListener("click", () => {
   if (document.querySelector(".carry-list") == null) {
     makeCarry();
