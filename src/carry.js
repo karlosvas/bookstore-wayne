@@ -1,10 +1,10 @@
 "use strict";
 
-import { Data } from "./server.js";
-import { obtenerCookie, addJSON } from "./cookies.js";
-import { updateStart, updateProduct } from "./update.js"
-import { deleteProductEvent } from "./delate-carry.js"
-import { updateCarry } from "./update.js";
+import { Data } from "./index.js";
+import { obtenerCookie } from "./cookies.js";
+import { updateStart, updateProduct, updateCarry } from "./update.js"
+import { deleteProductEvent } from "./delateCarry.js"
+import { addJSON, addJsonDB } from "./readJSON.js";
 
 export let Carry = {
   products: [],
@@ -17,7 +17,7 @@ export let Carry = {
 
 document.addEventListener("DOMContentLoaded", function () {
   let id = obtenerCookie("id").join();
-  addJSON(id);
+  addJsonDB(id);
   updateStart();
 });
 

@@ -1,9 +1,9 @@
 "use strict"
 
-import { Data } from "./server.js";
+import { Data } from "./index.js";
 import { Carry } from "./carry.js";
 import { obtenerCookie, updateCookies } from "./cookies.js"
-import { deleteNewProductEvent } from "./delate-carry.js"
+import { deleteNewProductEvent } from "./delateCarry.js"
 
 export const updateStart = () => {
     let indexCarry = obtenerCookie("indexCarry");

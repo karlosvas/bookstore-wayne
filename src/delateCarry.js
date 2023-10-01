@@ -1,6 +1,6 @@
 "use strict"
 import { Carry } from "./carry.js"
-import { Data } from "./server.js"
+import { Data } from "./index.js"
 import { updateCarry } from "./update.js"
 import { updateCookies } from "./cookies.js"
 

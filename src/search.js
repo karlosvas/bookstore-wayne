@@ -1,37 +1,7 @@
 "use strict";
-import { Data } from "./server.js";
-
-export const readJSON = async () => {
-  const response = await fetch("/JSON/books.json");
-  const jsonData = await response.json();
-
-  if (!response.ok) {
-    throw new Error("Error al cargar el archivo JSON");
-  }
-
-  Data.collection = jsonData
-
-  for (const key in jsonData) {
-    if (jsonData.hasOwnProperty(key)) {
-      Data.allBooks.push(...jsonData[key]);
-    }
-  }
-};
+import { Data } from './index.js';
 
 export function searchMatches(res) {
-  if (Data.searchBooks == 20) return
-  // Verifica si corresponde a una colección.
-  if (Data.collection[res] !== undefined) {
-    let collection = Data.collection[res]
-    colectionBook(collection)
-  }
-  // Verifica si coresponde con alguna id.
-  for (let i = 0; i < Data.allBooks.length; i++) {
-    if (Data.allBooks[i].id == res) {
-      const book = Data.allBooks[i]
-      createBook(book)
-    }
-  }
   // Verifica si corresponde con algun título.
   for (let i = 0; i < Data.allBooks.length; i++) {
     let element = Data.allBooks[i].title
@@ -41,6 +11,21 @@ export function searchMatches(res) {
       createBook(book)
     }
   }
+  res = res.replace(/\s+/g, '').toLocaleLowerCase()
+  // Verifica si corresponde a una colección.
+  if (Data.collection[res] !== undefined) {
+    let collection = Data.collection[res]
+    const divFotos = document.querySelector(".div-fotos");
+    colectionBook(collection, divFotos)
+  }
+  // Verifica si coresponde con alguna id.
+  for (let i = 0; i < Data.allBooks.length; i++) {
+    if (Data.allBooks[i].id == res) {
+      const book = Data.allBooks[i]
+      createBook(book)
+    }
+  }
+
   return
 }
 
@@ -60,13 +45,12 @@ const createBook = (book) => {
 };
 
 
-const colectionBook = (collection) => {
+export const colectionBook = (collection, divFotos) => {
   let arrCollectoion = []
   for (let value of collection) {
     arrCollectoion.push(value)
   }
   for (let i = 0; i < arrCollectoion.length; i++) {
-    const divFotos = document.querySelector(".div-fotos");
     const anchor = document.createElement("a");
     anchor.href = "/html/books.html";
     const img = document.createElement("img");

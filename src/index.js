@@ -1,6 +1,7 @@
 "use strict";
 
-import { readJSON, searchMatches } from "./search.js";
+import { searchMatches } from "./search.js";
+import { readJsonDB } from "./readJSON.js";
 
 export let Data = {
   collection: [],
@@ -12,11 +13,12 @@ export let Data = {
 const input = document.getElementById("input-search");
 // const books = document.querySelectorAll(".img-main")
 
+
 input.addEventListener("keydown", (event) => {
   if (event.keyCode === 13) {
-    let res = input.value.replace(/\s+/g, '').toLocaleLowerCase()
+    let res = input.value
     input.value = "";
-    if (Data.searchBooks < 20) {
+    if (document.querySelectorAll(".img-main").length < 15) {
       searchMatches(res);
     }
   }
@@ -30,5 +32,5 @@ if (home != null) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  readJSON()
+  readJsonDB()
 });
