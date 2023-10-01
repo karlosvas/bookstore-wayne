@@ -1,6 +1,6 @@
 "use strict"
 
-import { Data } from "./search.js";
+import { Data } from "./server.js";
 import { Carry } from "./carry.js";
 import { obtenerCookie, updateCookies } from "./cookies.js"
 import { deleteNewProductEvent } from "./delate-carry.js"

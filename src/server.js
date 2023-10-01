@@ -1,24 +1,26 @@
 "use strict";
 
-import { searchMatches } from "./search.js";
-import { Data } from "./search.js";
+import { readJSON, searchMatches } from "./search.js";
+
+export let Data = {
+  collection: [],
+  allBooks: [],
+  book: "",
+  searchBooks: 0,
+};
 
 const input = document.getElementById("input-search");
-const home = document.getElementById("home");
+// const books = document.querySelectorAll(".img-main")
 
 input.addEventListener("keydown", (event) => {
-  let res = "";
   if (event.keyCode === 13) {
-    res = input.value;
-    res = res.toLocaleLowerCase()
+    let res = input.value.replace(/\s+/g, '').toLocaleLowerCase()
     input.value = "";
     if (Data.searchBooks < 20) {
-      searchMatches(res.split(" "));
-      input.value = "";
+      searchMatches(res);
     }
   }
 });
-
 
 if (home != null) {
   home.addEventListener("click", () => {
@@ -26,3 +28,7 @@ if (home != null) {
     window.location.href = "/";
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  readJSON()
+});

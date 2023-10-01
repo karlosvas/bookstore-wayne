@@ -73,31 +73,68 @@
             "price": "33,35€"
         }
     ],
-    "harry": [
-        {
-        "id": "harry1",
-        "title": "Harry Potter y la piedra filosofal",
-        "content": "En esta edición especial de Harry Potter y la piedra filosofal, el texto completo e íntegro de la obra original de J.K. Rowling va acompañado por hermosas ilustraciones a todo color en casi todas las páginas, un diseño excelente y varias sorpresas interactivas de ingeniería en papel, obra del célebre estudio MinaLima. Una nueva forma de descubrir la carta de admisión de Harry a Hogwarts, la entrada mágica al callejón Diagon, el suntuoso festín en el Gran Salón de Hogwarts...",
-        "imagePath": "https://m.media-amazon.com/images/I/91NW7CBaVwL._SY466_.jpg",
-        "price": "34,14€"
-        }
-    ],
-    "esmerlda": [
-        {
-        "id": "esmeralda1",
-        "title": "El verano en que mi madre tuvo los ojos verdes",
-        "content": "Aleksy aún recuerda el último verano que pasó con su madre. Han transcurrido muchos años, pero pronto vuelve a verse sacudido por las mismas emociones que lo asediaron en aquel momento: el rencor, la tristeza, la rabia. ¿Cómo perdonar a la madre que lo rechazó? ¿Cómo enfrentarse a la enfermedad que la está consumiendo? Este es el relato de un verano de reconciliación en el que madre e hijo bajan las armas, espoleados por la llegada de lo inevitable y por la necesidad de hacer las paces entre sí y consigo mismos. Un brutal testimonio que conjuga el resentimiento, la impotencia y la fragilidad de las relaciones maternofiliales. Una poderosa novela que entrelaza la vida y la muerte en una apelación al amor y al perdón. Uno de los grandes descubrimientos de la literatura europea actual.",
-        "imagePath": "https://imagessl9.casadellibro.com/a/l/s7/59/9788417553159.webp",
-        "price": "12,32€"
-        }
-    ],
     "mariposas": [
         {
-        "id": "mariposas1",
-        "title": "Mariposas monarcas",
-        "content": "Hace mil vidas conocer a Marta Sánchez payerpaj y VI en ella una mariposa monarca. Estaba al frente de una clase de literatura y escritura para adultos en medio de la meseta que a mí me hizo palpitar; sentir envidia de los perros que asisten tras los ventanales a sus clases. Y de las mujeres y los hombres de pueblo que cada día escuchaban un verso, leían un libro y crecen juntos. Personas sin edad guiados por la pasión de Marta por cada palabra. Mi trabajo es una experiencia vital, y descubrimiento, de dolor y emoción por ver que hay tantos mundos que están en este:' Marta, mariposa monarca, llevaba en su cuerpo el peso de haber atravesado el océano varias veces y haber se instalado más allá, en aquellas montañas donde me hablaron los chamanes. Esa mariposa tuvo que remontar huracanes, aprender a buscar y disfrutar de la brisa a favor; adaptarse al frío. Amamantar y crear sil propio ecosistema que donde alimentarse alimentando.",
-        "imagePath": "https://imagessl6.casadellibro.com/a/l/s7/66/9788418115066.webp",
-        "price": "12,32€" 
+            "id": "mariposas1",
+            "title": "Mariposas monarcas",
+            "content": "Hace mil vidas conocer a Marta Sánchez payerpaj y VI en ella una mariposa monarca. Estaba al frente de una clase de literatura y escritura para adultos en medio de la meseta que a mí me hizo palpitar; sentir envidia de los perros que asisten tras los ventanales a sus clases. Y de las mujeres y los hombres de pueblo que cada día escuchaban un verso, leían un libro y crecen juntos. Personas sin edad guiados por la pasión de Marta por cada palabra. Mi trabajo es una experiencia vital, y descubrimiento, de dolor y emoción por ver que hay tantos mundos que están en este:' Marta, mariposa monarca, llevaba en su cuerpo el peso de haber atravesado el océano varias veces y haber se instalado más allá, en aquellas montañas donde me hablaron los chamanes. Esa mariposa tuvo que remontar huracanes, aprender a buscar y disfrutar de la brisa a favor; adaptarse al frío. Amamantar y crear sil propio ecosistema que donde alimentarse alimentando.",
+            "imagePath": "https://imagessl6.casadellibro.com/a/l/s7/66/9788418115066.webp",
+            "price": "12,32€" 
         }
-    ]
+    ],
+    "tatiana": [
+        {
+            "id": "tatiana1",
+            "title": "El verano que mi madre tuvo los ojos verdes",
+            "content": "Una conmovedora novela que narra la historia de una joven mujer que regresa a su ciudad natal en busca de respuestas sobre su madre y se encuentra con un verano lleno de secretos, amor y redescubrimiento. Tatiana Tibuleac te sumerge en un mundo de emociones y recuerdos con su narrativa evocadora.",
+            "imagePath": "https://imagessl6.casadellibro.com/a/l/s7/36/9788417553036.webp",
+            "price": "19,99€"
+        },
+        {
+            "id": "tatiana2",
+            "title": "El jardín de vidrio",
+            "content": "Una cautivadora historia que te transportará a un jardín misterioso lleno de flores únicas y extrañas criaturas. Tatiana Tibuleac te guía a través de los secretos enterrados en este jardín, donde los deseos y los miedos se entrelazan en una trama fascinante. Una obra que despierta la imaginación y los sentidos.",
+            "imagePath": "https://imagessl9.casadellibro.com/a/l/s7/29/9788418668029.webp",
+            "price": "22,50€"
+        }
+    ],
+    "harrypotter": [
+        {
+            "id": "harrypotter1",
+            "title": "Harry Potter y la piedra filosofal",
+            "content": "El primer libro de la famosa serie de Harry Potter. Únete a Harry en su emocionante viaje al mundo de la magia, donde descubre su verdadera identidad como mago y enfrenta desafíos asombrosos. J.K. Rowling te sumerge en un mundo lleno de aventuras, amistad y magia.",
+            "imagePath": "https://imagessl3.casadellibro.com/a/l/s7/93/9788498388893.webp",
+            "price": "15,99€"
+        },
+        {
+            "id": "harrypotter2",
+            "title": "Harry Potter y la cámara secreta",
+            "content": "La emocionante continuación de las aventuras de Harry Potter. En su segundo año en Hogwarts, Harry se enfrenta a un misterioso enemigo que acecha en los pasillos del castillo. J.K. Rowling te sumerge en una trama llena de misterio y peligro.",
+            "imagePath": "https://imagessl7.casadellibro.com/a/l/s7/77/9788498389777.webp",
+            "price": "17,25€"
+        },
+        {
+            "id": "harrypotter3",
+            "title": "Harry Potter y el prisionero de Azkaban",
+            "content": "La tercera entrega de la serie llena de magia y misterio. Harry descubre oscuros secretos sobre su pasado y se enfrenta a un peligroso fugitivo de Azkaban. J.K. Rowling te lleva a un viaje lleno de giros inesperados y emociones intensas.",
+            "imagePath": "https://imagessl7.casadellibro.com/a/l/s7/87/9788418174087.webp",
+            "price": "18,99€"
+        }
+    ],
+    "lauragallego": [
+        {
+            "id": "lauragallego1",
+            "title": "Memorias de Idhún: La Resistencia",
+            "content": "El primer libro de la exitosa serie 'Memorias de Idhún' de Laura Gallego. Adéntrate en un mundo de magia, criaturas fantásticas y batallas épicas mientras los protagonistas luchan por salvar su mundo de la destrucción. Laura Gallego te envuelve en una historia que te dejará sin aliento.",
+            "imagePath": "https://imagessl5.casadellibro.com/a/l/s7/95/9788467502695.webp",
+            "price": "16,99€"
+        },
+        {
+            "id": "lauragallego2",
+            "title": "La Emperatriz de los Etéreos",
+            "content": "Una novela fascinante que te transportará a un mundo de fantasía lleno de personajes intrigantes y paisajes impresionantes. Laura Gallego te sumerge en una historia de poder, amor y magia en un reino en constante cambio. Esta edición incluye una introducción de la autora sobre la inspiración detrás de la obra.",
+            "imagePath": "https://imagessl1.casadellibro.com/a/l/s7/91/9788420410791.webp",
+            "price": "18,50€"
+        }
+        ]
 }
