@@ -17,3 +17,5 @@ Look at my app and give me your opinion 😊. If you have any questions or see a
 ```bash
 pnpm start
 ```
+## About the project
+I know that there are obviously much simpler ways to make a website like this using frameworks, but I wanted to set myself a challenge to make it as vanilla as possible.

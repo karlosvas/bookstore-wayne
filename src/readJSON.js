@@ -11,7 +11,6 @@ export const readJSON = async () => {
     }
 
     const jsonData = await response.json();
-
     Data.collection = jsonData
 
     for (const key in jsonData) {
@@ -22,6 +21,7 @@ export const readJSON = async () => {
 };
 
 export const readJsonDB = async () => {
+    console.log("Cargando archivos")
     const response = await fetch("/api/books");
 
     if (!response.ok) {
@@ -29,17 +29,13 @@ export const readJsonDB = async () => {
     }
 
     const jsonData = await response.json();
-
     Data.collection = jsonData[0]
-
     for (let key in Data.collection) {
         if (key == "_id") {
             continue
         }
         Data.allBooks.push(...Data.collection[key])
     }
-    console.log(Data.collection)
-    console.log(Data.allBooks)
 };
 
 export const addJSON = (book) => {

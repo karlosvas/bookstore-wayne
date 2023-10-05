@@ -76,6 +76,16 @@ header {
             border-radius: 30px;
         }
     }
+    & button{
+        padding: 10px;
+        margin: 5px;
+        background: none;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 2px solid rgb(255, 132, 75);
+    }
 }
 
 main {
@@ -88,9 +98,10 @@ main {
 .div-fotos {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    margin-left: 50px;
+    padding-left: 12.4vw;
+    padding-right: 12.4vw;
 }
 
 .img-main {

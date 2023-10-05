@@ -202,23 +202,37 @@ main{
 section{
     display: grid;
     background-image: linear-gradient(0deg, #ff6d59 53%, #eb5c5c 100%);
-    margin-bottom: 0;
-    padding-bottom: 0;
-    & h1{
-        padding-left: 100px;
-    }
-    & .div-rel-books, .div-fotos {
-        padding-right: 12.4vw;
-        padding-left: 12.4vw;
+    & .div-rel-books {
+        padding: 50px 12.4vw;
         & .img-main{
             max-width: 300px;
-            max-height: 450px;
-            padding: 30px;
+            max-height: 350px;
+            padding: 10px;
             border-radius: 5px;
             object-fit: cover;
         }
         & a {
             display: inline-block;
+        }
+        & h1{
+            padding-left: 10px;
+        }
+    }
+    & .div-fotos {
+        background-color: rgb(19,19,19);
+        padding: 50px 12.4vw;
+        & .img-main{
+            max-width: 300px;
+            max-height: 350px;
+            padding: 10px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        & a {
+            display: inline-block;
+        }
+        & h1{
+            padding-left: 10px;
         }
     }
     
@@ -226,6 +240,7 @@ section{
 
 footer{
     background-color: rgb(19,19,19);
+    min-width: 25%;
 }
 input::selection{
     background: rgb(241, 114, 9);

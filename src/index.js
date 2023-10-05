@@ -11,25 +11,26 @@ export let Data = {
 };
 
 const input = document.getElementById("input-search");
-// const books = document.querySelectorAll(".img-main")
+const books = document.querySelectorAll(".img-main")
 
 
 input.addEventListener("keydown", (event) => {
   if (event.keyCode === 13) {
     let res = input.value
     input.value = "";
-    if (document.querySelectorAll(".img-main").length < 15) {
+    if (books.length < 15) {
+      console.log(res)
       searchMatches(res);
     }
   }
 });
 
-if (home != null) {
-  home.addEventListener("click", () => {
-    document.cookie = " ";
-    window.location.href = "/";
-  });
-}
+
+home.addEventListener("click", () => {
+  document.cookie = " ";
+  window.location.href = "/";
+});
+
 
 document.addEventListener("DOMContentLoaded", () => {
   readJsonDB()

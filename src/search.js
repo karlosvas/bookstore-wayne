@@ -9,6 +9,7 @@ export function searchMatches(res) {
     if (element == res) {
       const book = Data.allBooks[i]
       createBook(book)
+      break
     }
   }
   res = res.replace(/\s+/g, '').toLocaleLowerCase()
@@ -23,16 +24,16 @@ export function searchMatches(res) {
     if (Data.allBooks[i].id == res) {
       const book = Data.allBooks[i]
       createBook(book)
+      break
     }
   }
-
   return
 }
 
 const createBook = (book) => {
   const divFotos = document.querySelector(".div-fotos");
   const anchor = document.createElement("a");
-  anchor.href = "/html/books.html";
+  anchor.href = "/book";
   const img = document.createElement("img");
   img.src = book.imagePath;
   img.className = "img-main";
@@ -52,7 +53,7 @@ export const colectionBook = (collection, divFotos) => {
   }
   for (let i = 0; i < arrCollectoion.length; i++) {
     const anchor = document.createElement("a");
-    anchor.href = "/html/books.html";
+    anchor.href = "/book";
     const img = document.createElement("img");
     img.src = arrCollectoion[i].imagePath;
     img.className = "img-main";
@@ -62,20 +63,4 @@ export const colectionBook = (collection, divFotos) => {
     anchor.appendChild(img);
     divFotos.appendChild(anchor);
   }
-};
-
-export const findPrice = (title, arr) => {
-  Object.values(Data.allBooks).forEach(function (elemento) {
-    if (title === elemento.title) {
-      arr.push(elemento.price);
-    }
-  });
-};
-
-export const findBook = (title, arr) => {
-  Object.values(Data.allBooks).forEach(function (elemento) {
-    if (title === elemento.title) {
-      arr.push(elemento.book);
-    }
-  });
 };
