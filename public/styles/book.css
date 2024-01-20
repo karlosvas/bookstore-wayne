@@ -1,4 +1,4 @@
-body{
+body {
     padding: 0;
     margin: 0;
     font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -6,9 +6,9 @@ body{
     color: aliceblue;
 }
 
-input{
+input {
     background-color: rgb(245, 245, 255);
-    padding: 5px 10px;
+    padding: 5px;
     min-width: 25%;
     font-size: 15px;
     font-family: monospace;
@@ -16,80 +16,87 @@ input{
     outline-color: rgb(241, 114, 9);
 }
 
-header{
-    height: 15%;
-    min-width: 100%;
-    z-index: 10;
-    position:sticky;
-    top: 0;
+header {
+    position: sticky;
     display: flex;
     align-items: center;
-    justify-content: end;
-    background-color: rgb(19,19,19);
-    & img{
+    height: 15%;
+    width: 100%;
+    top: 0;
+    background-color: rgb(19, 19, 19);
+    text-shadow: 0 0 3px rgb(241, 114, 9);
+    font-size: 20px;
+
+    img {
         max-width: 60px;
         max-height: 60px;
     }
-    & .div-search {
+
+    .div-search {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
-        font-size: 20px;
-        text-shadow: 0 0 3px rgb(241, 114, 9);
     }
-    & #home {
+
+    #home {
+        margin-left: 40px;
         background: #000;
-        position: absolute;
-        left: 50;
         height: 70px;
         width: 70px;
         border-radius: 10px;
-        padding: 10px;
         cursor: pointer;
         transition: all 0.3s;
     }
-    & #home:hover {
+
+    #home:hover {
         box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
         transform: translateY(-2px);
     }
-    & #home:active {
+
+    #home:active {
         box-shadow: none;
         transform: translateY(0);
     }
-    & #carry{
+
+    #carry {
+        margin-right: 40px;
         border-radius: 50px;
-        margin-right: 60px;
     }
-    & #carry:hover{
+
+    #carry:hover {
         background-color: #e76a2f;
     }
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
     align-content: center;
     background-image: linear-gradient(180deg, #ff6d59 53%, #eb5c5c 100%);
     max-width: 100%;
     max-height: 90%;
-    & .div-foto{
-        margin: 50px;
+
+    .div-foto {
+        margin: 30px;
         margin-top: 100px;
-        height: 50%;
-        & img{
-            height: 30vw;
+
+        img {
+            height: 25vw;
             border-radius: 10px;
         }
     }
-    & .div-info{
+
+    .div-info {
         padding: 20px;
         margin-top: 50px;
-        & p{
+
+        p {
             max-width: 650px;
         }
     }
-    & .btn-add-carry{
+
+    .btn-add-carry {
         padding: 0.8em;
         border-radius: 5px;
         border-radius: 8px;
@@ -102,15 +109,18 @@ main{
         cursor: pointer;
         transition: all 0.3s;
     }
-    & .btn-add-carry:hover {
+
+    .btn-add-carry:hover {
         box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
         transform: translateY(-2px);
     }
-    & .btn-add-carry:active {
+
+    .btn-add-carry:active {
         box-shadow: none;
         transform: translateY(0);
     }
-    & .carry-list{
+
+    .carry-list {
         color: #000;
         z-index: 10;
         position: fixed;
@@ -124,25 +134,30 @@ main{
         margin-right: 130px;
         background: rgb(245, 245, 255);
         transition: opacity 0.2s ease, max-height 0.2s ease;
-        & .div-producto{
+
+        .div-producto {
             display: grid;
             align-items: center;
             width: 100%;
             height: 20px;
             margin-top: 30px;
-            & #product{
+
+            #product {
                 width: 80%;
                 padding: 0;
                 margin: 0;
             }
-            & .priceBooks{
+
+            .priceBooks {
                 font-size: 14px;
             }
-            & .numBook{
+
+            .numBook {
                 position: absolute;
                 right: 40;
             }
-            & .btn-product{
+
+            .btn-product {
                 display: flex;
                 justify-content: center;
                 right: 10;
@@ -151,47 +166,54 @@ main{
                 width: 23px;
                 transition: all 0.2s;
             }
-            & .btn-product:hover{
+
+            .btn-product:hover {
                 border-color: #e76a2f;
             }
         }
     }
-    & #totalBooks{
+
+    #totalBooks {
         position: absolute;
         bottom: 0;
         right: 0;
         font-size: 40px;
         margin: 30;
     }
-    & .carry-list.active {
+
+    .carry-list.active {
         opacity: 1;
     }
-    & .carry-list::selection{
+
+    .carry-list::selection {
         background: rgb(241, 114, 9);
-        color:  rgb(245, 245, 255);
+        color: rgb(245, 245, 255);
     }
 }
 
-@media screen and (max-width: 600px){
-    .div-header{
-        & input{
+@media screen and (max-width: 600px) {
+    .div-header {
+        input {
             max-width: 100%;
             margin-right: 40px;
         }
-        & #home{
-           width: 90px;
-           height: 50px;
-           margin: 0 10px;
+
+        #home {
+            width: 90px;
+            height: 50px;
+            margin: 0 10px;
         }
-        & #carry{
+
+        #carry {
             margin-right: 10px;
         }
     }
-    
-    .div-main{
+
+    .div-main {
         padding: 50px 0;
         flex-wrap: wrap;
-        & .div-foto > img{
+
+        .div-foto>img {
             margin-right: 0;
             width: 50%;
             height: 50%;
@@ -199,54 +221,68 @@ main{
     }
 }
 
-section{
+section {
     display: grid;
+    padding-top: 50px;
     background-image: linear-gradient(0deg, #ff6d59 53%, #eb5c5c 100%);
-    & .div-rel-books {
+
+    h1 {
+        margin: auto;
+    }
+
+    .div-rel-books {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .img-main {
+            max-width: 230px;
+            max-height: 280px;
+            padding: 10px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        a {
+            display: inline-block;
+        }
+
+
+    }
+
+    .div-fotos {
+        background-color: rgb(19, 19, 19);
         padding: 50px 12.4vw;
-        & .img-main{
+
+        .img-main {
             max-width: 300px;
             max-height: 350px;
             padding: 10px;
             border-radius: 5px;
             object-fit: cover;
         }
-        & a {
+
+        a {
             display: inline-block;
         }
-        & h1{
+
+        h1 {
             padding-left: 10px;
         }
     }
-    & .div-fotos {
-        background-color: rgb(19,19,19);
-        padding: 50px 12.4vw;
-        & .img-main{
-            max-width: 300px;
-            max-height: 350px;
-            padding: 10px;
-            border-radius: 5px;
-            object-fit: cover;
-        }
-        & a {
-            display: inline-block;
-        }
-        & h1{
-            padding-left: 10px;
-        }
-    }
-    
+
 }
 
-footer{
-    background-color: rgb(19,19,19);
+footer {
+    background-color: rgb(19, 19, 19);
     min-width: 25%;
 }
-input::selection{
+
+input::selection {
     background: rgb(241, 114, 9);
-    color:  rgb(245, 245, 255);
+    color: rgb(245, 245, 255);
 }
 
-::selection{
+::selection {
     background: rgb(0, 0, 0);
 }

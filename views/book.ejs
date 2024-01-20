@@ -1,38 +1,43 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"&amp;gt>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" &amp;gt>
     <title>Book</title>
     <link rel="icon" href="../img/oro.png">
     <link rel="stylesheet" href="../styles/book.css">
-    <script defer type="module" src="../cookies.js"></script>
     <script defer type="module" src="../carry.js"></script>
+    <script defer type="module" src="../books.js"></script>
 </head>
+
 <body>
-    <header class="header">
-        <img id="home" src="/img/oro.png">
+    <header>
         <div class="div-search">
+            <a href="/"><img id="home" src="/img/oro.png"></a>
             <input id="input-search" type="text">
+            <img src="/img/carry.png" id="carry">
         </div>
-        <img src="/img/carry.png" id="carry">
     </header>
-        
-    <main class="main">
+
+    <main>
         <div class="div-foto"><img id="imgPath" src=""></div>
         <div class="div-info">
-            <h1 id ="title"></h1>
-            <h3 id= "price">13€</h3>
+            <h1 id="title"></h1>
+            <h3 id="price">13€</h3>
             <i>Brandom Sanderson</i>
             <br><br>
             <p id="content"></p>
             <button class="btn-add-carry">Agregar a carrito</button>
         </div>
     </main>
-        <section>
-            <div class="div-rel-books"><h1>Libros relacionados</h1></div>
-            <div class="div-fotos"></div>
-        </section>
+    <section>
+        <h1>Libros relacionados</h1>
+        <div class="div-rel-books">
+            <div class="div-main"></div>
+        </div>
+    </section>
     <footer>
     </footer>
 </body>
+
 </html>

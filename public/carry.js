@@ -1,10 +1,8 @@
-"use strict";
+'use strict'
 
-import { Data } from "./index.js";
-import { obtenerCookie } from "./cookies.js";
-import { updateStart, updateProduct, updateCarry } from "./update.js"
+import { Data } from "./main.js";
 import { deleteProductEvent } from "./delateCarry.js"
-import { addJSON, addJsonDB } from "./readJSON.js";
+import { updateProduct, updateCarry } from "./update.js"
 
 export let Carry = {
   products: [],
@@ -14,36 +12,19 @@ export let Carry = {
   inCarry: false,
 };
 
-
-document.addEventListener("DOMContentLoaded", function () {
-  let id = obtenerCookie("id").join();
-  addJsonDB(id);
-  updateStart();
-});
-
-document.querySelector(".btn-add-carry").addEventListener("click", () => {
-  Carry.localCarry++
-  let index = Carry.products.indexOf(Data.book.title);
-  if (index !== -1) Carry.indexCarry[index]++
-
-  if (document.querySelector(".carry-list") == null) {
-    makeCarry();
-    main.querySelector(".carry-list").style.opacity = "0";
-    Carry.open = true;
-  }
-  updateCarry();
-});
-
-const main = document.querySelector(".main");
+// Abre y cierra el carrito
+const main = document.querySelector("main");
 document.getElementById("carry").addEventListener("click", () => {
+  // Si no existe el carrito lo crea
   if (document.querySelector(".carry-list") == null) {
     makeCarry();
     updateCarry();
     Carry.open = true;
   }
+  // Si existe lo abre o cierra
   if (Carry.open == true) {
-    updateCarry();
     main.querySelector(".carry-list").style.opacity = "1";
+    updateCarry();
     Carry.open = false;
   } else {
     main.querySelector(".carry-list").style.opacity = "0";
@@ -51,6 +32,7 @@ document.getElementById("carry").addEventListener("click", () => {
   }
 });
 
+// Crea el carrito
 const makeCarry = () => {
   const carrito = document.createElement("div");
   const carryContent = document.createTextNode(`Su carrito es:`);
@@ -64,3 +46,17 @@ const makeCarry = () => {
     deleteProductEvent()
   }
 };
+
+// Botón de añadir al carrito
+document.querySelector(".btn-add-carry").addEventListener("click", () => {
+  Carry.localCarry++
+  let index = Carry.products.indexOf(Data.book.title);
+  if (index !== -1) Carry.indexCarry[index]++
+
+  if (document.querySelector(".carry-list") == null) {
+    makeCarry();
+    main.querySelector(".carry-list").style.opacity = "0";
+    Carry.open = true;
+  }
+  updateCarry();
+});

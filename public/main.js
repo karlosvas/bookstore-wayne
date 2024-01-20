@@ -10,27 +10,25 @@ export let Data = {
   searchBooks: 0,
 };
 
-const input = document.getElementById("input-search");
-const books = document.querySelectorAll(".img-main")
+const search = document.getElementById("input-search");
+const divRel = document.querySelector(".div-main");
 
-
-input.addEventListener("keydown", (event) => {
+search.addEventListener("keydown", (event) => {
   if (event.keyCode === 13) {
-    let res = input.value
-    input.value = "";
-    if (books.length < 15) {
-      console.log(res)
-      searchMatches(res);
+    let res = search.value
+    search.value = "";
+
+    if (divRel.childElementCount < 15) {
+      searchMatches(res, divRel);
     }
   }
-});
 
+});
 
 home.addEventListener("click", () => {
   document.cookie = " ";
   window.location.href = "/";
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   readJsonDB()
